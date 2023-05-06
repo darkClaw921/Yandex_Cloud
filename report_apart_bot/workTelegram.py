@@ -4,9 +4,9 @@ import telebot
 from createKeyboard import *
 from datetime import datetime
 import bitrix
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 from pprint import pprint
-#load_dotenv()
+load_dotenv()
 
 bot = telebot.TeleBot(os.getenv('TELEBOT_TOKEN'))
 # инициализация бота и диспетчера
@@ -15,7 +15,7 @@ bot = telebot.TeleBot(os.getenv('TELEBOT_TOKEN'))
 @bot.message_handler(commands=['help', 'start'])
 def say_welcome(message):
     bot.send_message(message.chat.id,
-                     'Hi, there! I am hosted by Yandex.Cloud Functions.\n'
+                     'Hi, there! I am hosted by Yandex.Cloud Functions.\n',
                      parse_mode='markdown')
 
 #@bot.callback_query_handler(startswitch('')
@@ -73,4 +73,4 @@ def any_message(message):
     bot.send_message(message.chat.id, f"Расписание обновляеться, это может занять какое-то время", )    
         
     bot.send_message(message.chat.id, f"Попробуйте еще раз",)
-#bot.infinity_polling()
+bot.infinity_polling()

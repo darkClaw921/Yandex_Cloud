@@ -3,8 +3,10 @@ from dataclasses import dataclass
 import os
 from pprint import pprint
 import math
-#from dotenv import load_dotenv
-#load_dotenv()
+import traceback
+from dotenv import load_dotenv
+load_dotenv()
+
 
 webhook = os.getenv('webHook')
 bit = Bitrix(webhook)
@@ -23,7 +25,7 @@ def get_deals():
             }, raw=True)
     dealsTrue = deals['result']
     startTotal = deals['next']
-    pprint(deals) 
+    #pprint(deals) 
     try:
         while deals['total'] > startTotal:
             #print(deals['next'], deals['total']) 
@@ -40,7 +42,8 @@ def get_deals():
             pprint(deals)
 
     except Exception as e :
-        print('ошибка ',e)
+        print(f'ошибка bitrix',e)
+        print(traceback.format_exc())
 
     return dealsTrue
         
